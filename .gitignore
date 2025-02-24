@@ -1,2 +1,8 @@
 CMakeLists.txt.user
 .vscode/settings.json
+
+# CMake build folders
+/cmake-build-*/
+
+# Clion IDE settings
+.idea/

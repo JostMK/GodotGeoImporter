@@ -61,7 +61,7 @@ jobs:
 
       - name: Setup MSVC (Windows)
         if: matrix.config.os == 'windows-latest'
-        uses: ilammy/msvc-dev-cmd@v1
+        uses: ilammy/msvc-dev-cmd@v1.13
 
       - name: ccache
         uses: hendrikmuhs/ccache-action@v1.2
@@ -88,7 +88,7 @@ jobs:
 
       - name: Upload artifact (Debug)
         if: matrix.build_type == 'Debug'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.repository.name }}-Debug
           path: |
@@ -96,7 +96,7 @@ jobs:
 
       - name: Upload artifact (Release)
         if: matrix.build_type == 'Release'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.repository.name }}-Release
           path: |

@@ -104,7 +104,7 @@ SpacesBeforeTrailingComments: 1
 SpacesInAngles: false
 SpacesInContainerLiterals: true
 SpacesInCStyleCastParentheses: false
-SpacesInParentheses: true
+SpacesInParentheses: false
 SpacesInSquareBrackets: false
 Standard: c++17
 TabWidth: 4

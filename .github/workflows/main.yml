@@ -61,10 +61,10 @@ jobs:
 
       - name: Setup MSVC (Windows)
         if: matrix.config.os == 'windows-latest'
-        uses: ilammy/msvc-dev-cmd@v1.13
+        uses: ilammy/msvc-dev-cmd@v1.13.0
 
       - name: ccache
-        uses: hendrikmuhs/ccache-action@v1.2
+        uses: hendrikmuhs/ccache-action@v1.2.17
         with:
           max-size: '10G'
           key: ${{ matrix.config.os }}-${{ matrix.build_type }}

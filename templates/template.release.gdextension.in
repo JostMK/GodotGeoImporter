@@ -9,4 +9,3 @@ GDExample = "icons/Example.svg"
 [libraries]
 windows.release.x86_64 = "bin/Windows-AMD64/${LIB_PREFIX}${PROJECT_NAME}.dll"
 linux.release.x86_64 = "bin/Linux-x86_64/lib${PROJECT_NAME}.so"
-macos.release = "bin/Darwin-Universal/lib${PROJECT_NAME}.dylib"

@@ -9,4 +9,3 @@ GDExample = "icons/Example.svg"
 [libraries]
 windows.debug.x86_64 = "bin/Windows-AMD64/${LIB_PREFIX}${PROJECT_NAME}-debug.dll"
 linux.debug.x86_64 = "bin/Linux-x86_64/lib${PROJECT_NAME}-debug.so"
-macos.debug = "bin/Darwin-Universal/lib${PROJECT_NAME}-debug.dylib"

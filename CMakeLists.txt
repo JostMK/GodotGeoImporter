@@ -52,7 +52,7 @@ endif()
 # LIB_DIR is where the actual library ends up. This is used in both the build directory and the
 # install directory and needs to be consistent with the paths in the gdextension file.
 #   e.g. linux.release.x86_64 = "lib/Linux-x86_64/libGDExtensionTemplate.so"
-set( LIB_DIR "lib/${CMAKE_SYSTEM_NAME}-${LIB_ARCH}" )
+set( LIB_DIR "bin/${CMAKE_SYSTEM_NAME}-${LIB_ARCH}" )
 
 message( STATUS "Building ${PROJECT_NAME} for ${LIB_ARCH} on ${CMAKE_SYSTEM_NAME}")
 
@@ -70,7 +70,7 @@ set_target_properties( ${PROJECT_NAME}
 if( NOT DEFINED CMAKE_DEBUG_POSTFIX )
     set_target_properties( ${PROJECT_NAME}
         PROPERTIES
-            DEBUG_POSTFIX "-d"
+            DEBUG_POSTFIX "-debug"
     )
 endif()
 

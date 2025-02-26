@@ -68,6 +68,7 @@ jobs:
         with:
           max-size: '10G'
           key: ${{ matrix.config.os }}-${{ matrix.build_type }}
+          variant: ${{ matrix.config.os == 'windows-latest' && 'sccache' || 'ccache' }}
 
       - name: Configure
         run: >

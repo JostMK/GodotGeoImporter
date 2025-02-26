@@ -1,5 +1,9 @@
-cmake_minimum_required( VERSION 3.22 )
+cmake_minimum_required( VERSION 3.25 )
 message( STATUS "Using CMake ${CMAKE_VERSION}" )
+
+# Needed for ccache with MSVC
+# See: https://cmake.org/cmake/help/latest/variable/CMAKE_MSVC_DEBUG_INFORMATION_FORMAT.html
+cmake_policy(SET CMP0141 NEW)
 
 set( FULL_PROJECT_NAME "GodotGeoRasters" )
 set( SHORT_PROJECT_NAME "GeoRasters" )
@@ -22,7 +26,7 @@ set( CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON )
 set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
 
 # Build universal lib on macOS
-# Note that CMAKE_OSX_ARCHITECTURES must be set before project().
+# Note: CMAKE_OSX_ARCHITECTURES must be set before project().
 if ( APPLE )
     set( CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "" )
 endif()

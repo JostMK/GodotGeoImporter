@@ -4,8 +4,8 @@ find_program(CCACHE_PROGRAM ccache)
 if (CCACHE_PROGRAM)
     # get version information
     execute_process(
-            COMMAND "${CCACHE_PROGRAM}" --version
-            OUTPUT_VARIABLE CCACHE_VERSION
+        COMMAND "${CCACHE_PROGRAM}" --version
+        OUTPUT_VARIABLE CCACHE_VERSION
     )
     string(REGEX MATCH "[^\r\n]*" CCACHE_VERSION ${CCACHE_VERSION})
 

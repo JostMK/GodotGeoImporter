@@ -1,8 +1,8 @@
 [![GitHub](https://img.shields.io/github/license/JostMK/GodotGeoImporter)](LICENSE) ![Build](https://github.com/JostMK/GodotGeoImporter/actions/workflows/main.yml/badge.svg)
 
-# GodotGeoImporter
+# Godot GeoRasters
 
-This project offers a GDExtension for the [Godot Game Engine](https://github.com/godotengine/godot) for importing common geo data files like GeoTIFF and other geo-rasters files.
+This project offers a GDExtension for the [Godot Game Engine](https://github.com/godotengine/godot) for importing common geo raster files like GeoTIFF.
 
 The open source [GDAL](https://github.com/OSGeo/gdal) library is used for importing.
 

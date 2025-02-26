@@ -7,5 +7,6 @@ reloadable = true
 GDExample = "icons/Example.svg"
 
 [libraries]
-windows.release.x86_64 = "bin/Windows-AMD64/${LIB_PREFIX}${PROJECT_NAME}.dll"
-linux.release.x86_64 = "bin/Linux-x86_64/lib${PROJECT_NAME}.so"
+windows.release.x86_64 = "bin/lib${SHORT_PROJECT_NAME}-Windows-AMD64.dll"
+linux.release.x86_64 = "bin/lib${SHORT_PROJECT_NAME}-Linux-x86_64.so"
+macos.release = "bin/lib${SHORT_PROJECT_NAME}-Darwin-Universal.dylib"

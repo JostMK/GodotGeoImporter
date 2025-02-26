@@ -8,33 +8,40 @@ on:
 
 jobs:
   lint:
-    name: 🧹 Lint / 📜 C++
+    name: Lint (Clang Format)
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
-      - name: Run clang-format style check
-        uses: jidicula/clang-format-action@v4.9.0
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          clang-format-version: '15'
+          fetch-depth: 2
+
+      - name: Run clang-format style check
+        uses: jidicula/clang-format-action@v4.14.0
+        with:
+          clang-format-version: '19'
           exclude-regex: 'extern'
 
   build:
     strategy:
       fail-fast: false
       matrix:
-        build_type: ['Debug', 'Release']
+        build_type: [ 'Debug', 'Release' ]
         config:
-          - { name: '🍏 macOS Clang', os: macos-latest }
-          - { name: '🐧 Linux GCC', os: ubuntu-latest }
-          - { name: '🪟 Windows MSVC', os: windows-latest }
+          - { name: 'macOS Clang', os: macos-latest }
+          - { name: 'Linux GCC', os: ubuntu-latest }
+          - { name: 'Windows MSVC', os: windows-latest }
 
     name: 🛠 Build / ${{ matrix.config.name }} (${{ matrix.build_type }})
     runs-on: ${{ matrix.config.os }}
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
+          fetch-depth: 2
           submodules: recursive
 
       - name: Install Dependencies (macOS)
@@ -54,10 +61,10 @@ jobs:
 
       - name: Setup MSVC (Windows)
         if: matrix.config.os == 'windows-latest'
-        uses: ilammy/msvc-dev-cmd@v1
+        uses: ilammy/msvc-dev-cmd@v1.13.0
 
       - name: ccache
-        uses: hendrikmuhs/ccache-action@v1.2
+        uses: hendrikmuhs/ccache-action@v1.2.17
         with:
           max-size: '10G'
           key: ${{ matrix.config.os }}-${{ matrix.build_type }}
@@ -80,17 +87,8 @@ jobs:
         run: cmake --install GDExtension-build
 
       - name: Upload artifact (Debug)
-        if: matrix.build_type == 'Debug'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.repository.name }}-Debug
-          path: |
-            ${{ github.workspace }}/install-${{ matrix.build_type }}/*
-
-      - name: Upload artifact (Release)
-        if: matrix.build_type == 'Release'
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ github.event.repository.name }}-Release
+          name: ${{ github.event.repository.name }}-${{ matrix.config.os }}-${{ matrix.build_type }}
           path: |
             ${{ github.workspace }}/install-${{ matrix.build_type }}/*

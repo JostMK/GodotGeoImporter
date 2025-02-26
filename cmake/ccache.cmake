@@ -1,9 +1,6 @@
 # See: https://crascit.com/2016/04/09/using-ccache-with-cmake/
 find_program(CCACHE_PROGRAM ccache)
 
-# See: https://cmake.org/cmake/help/latest/variable/CMAKE_MSVC_DEBUG_INFORMATION_FORMAT.html
-cmake_policy(SET CMP0141 NEW)
-
 if (CCACHE_PROGRAM)
     # get version information
     execute_process(

@@ -1,6 +1,9 @@
 # See: https://crascit.com/2016/04/09/using-ccache-with-cmake/
 find_program(CCACHE_PROGRAM ccache)
 
+# See: https://cmake.org/cmake/help/latest/variable/CMAKE_MSVC_DEBUG_INFORMATION_FORMAT.html
+cmake_policy(SET CMP0141 NEW)
+
 if (CCACHE_PROGRAM)
     # get version information
     execute_process(
@@ -20,6 +23,7 @@ if (CCACHE_PROGRAM)
 
         # By default Visual Studio generators will use /Zi which is not compatible
         # with ccache, so tell Visual Studio to use /Z7 instead.
+        # Note: This was added in Version 3.25 and policy CMP0141 must be set to NEW before the first project call
         message(STATUS "Setting MSVC debug information format to 'Embedded'")
         set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<$<CONFIG:Debug,RelWithDebInfo>:Embedded>")
 

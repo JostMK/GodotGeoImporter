@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.22 )
+cmake_minimum_required( VERSION 3.25 )
 message( STATUS "Using CMake ${CMAKE_VERSION}" )
 
 set( FULL_PROJECT_NAME "GodotGeoRasters" )
@@ -22,10 +22,15 @@ set( CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON )
 set( CMAKE_EXPORT_COMPILE_COMMANDS ON )
 
 # Build universal lib on macOS
-# Note that CMAKE_OSX_ARCHITECTURES must be set before project().
+# Note: CMAKE_OSX_ARCHITECTURES must be set before project().
 if ( APPLE )
     set( CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "" )
 endif()
+
+# ccache
+# Turns on ccache if found
+# Note: To work on MSVC the policy CMP0141 needs to be set to NEW before the first project call
+include( ccache )
 
 # Main project information
 project( ${FULL_PROJECT_NAME}
@@ -114,10 +119,6 @@ install( DIRECTORY "${CMAKE_SOURCE_DIR}/support_files/"
 )
 
 add_subdirectory( templates )
-
-# ccache
-# Turns on ccache if found
-include( ccache )
 
 # Formatting
 # Adds a custom target to format all the code at once

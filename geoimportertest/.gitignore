@@ -3,5 +3,5 @@
 /android/
 
 # GDExtension from the parent project - will be added on build
-GodotGeoImporter
+geo_rasters
 

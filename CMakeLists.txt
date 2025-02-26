@@ -1,8 +1,9 @@
-# SPDX-License-Identifier: Unlicense
-
 cmake_minimum_required( VERSION 3.22 )
-
 message( STATUS "Using CMake ${CMAKE_VERSION}" )
+
+set( FULL_PROJECT_NAME "GodotGeoRasters" )
+set( SHORT_PROJECT_NAME "GeoRasters" )
+set( PROJECT_GODOT_NAME "geo_rasters")
 
 # Require out-of-source builds
 file( TO_CMAKE_PATH "${PROJECT_BINARY_DIR}/CMakeLists.txt" LOC_PATH )
@@ -27,7 +28,7 @@ if ( APPLE )
 endif()
 
 # Main project information
-project( GodotGeoImporter
+project( ${FULL_PROJECT_NAME}
     LANGUAGES
         CXX
     VERSION
@@ -49,10 +50,14 @@ if ( APPLE )
     set( LIB_ARCH "universal" )
 endif()
 
+# Set output name to lib${SHORT_PROJECT_NAME}-${CMAKE_SYSTEM_NAME}-${LIB_ARCH}
+#   e.g. linux.release.x86_64 = "libGeoRasters-Linux-x86_64.so"
+set_target_properties( ${PROJECT_NAME} PROPERTIES OUTPUT_NAME "lib${SHORT_PROJECT_NAME}-${CMAKE_SYSTEM_NAME}-${LIB_ARCH}" )
+
 # LIB_DIR is where the actual library ends up. This is used in both the build directory and the
 # install directory and needs to be consistent with the paths in the gdextension file.
-#   e.g. linux.release.x86_64 = "lib/Linux-x86_64/libGDExtensionTemplate.so"
-set( LIB_DIR "bin/${CMAKE_SYSTEM_NAME}-${LIB_ARCH}" )
+#   e.g. linux.release.x86_64 = "bin/libGeoRasters-Linux-x86_64.so"
+set( LIB_DIR "bin/" )
 
 message( STATUS "Building ${PROJECT_NAME} for ${LIB_ARCH} on ${CMAKE_SYSTEM_NAME}")
 
@@ -90,8 +95,8 @@ include( GitVersionInfo )
 
 add_subdirectory( src )
 
-# Install library, extension file, and support files in ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}
-set( INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}/" )
+# Install library, extension file, and support files in ${CMAKE_INSTALL_PREFIX}/${PROJECT_GODOT_NAME}
+set( INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/${PROJECT_GODOT_NAME}/" )
 
 message( STATUS "Install directory: ${INSTALL_DIR}")
 

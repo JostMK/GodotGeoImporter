@@ -38,6 +38,12 @@ jobs:
     timeout-minutes: 30
 
     steps:
+      - name: Prepare Windows
+        if: matrix.config.os == 'windows-latest'
+        run: |
+          powershell -command "New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1 -PropertyType DWORD -Force"
+          git config --global core.longpaths true
+
       - name: Checkout
         uses: actions/checkout@v4
         with:

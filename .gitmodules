@@ -2,3 +2,6 @@
 	path = extern/godot-cpp
 	url = https://github.com/godotengine/godot-cpp.git
 	branch = 4.3
+[submodule "extern/gdal"]
+	path = extern/gdal
+	url = https://github.com/OSGeo/gdal.git
